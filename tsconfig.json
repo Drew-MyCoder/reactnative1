@@ -14,5 +14,5 @@
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
     "nativewind-env.d.ts"
-, "app/_layout.jsx"  ]
+, "app/_layout.jsx", "lib/appwrite.js", "app/index.jsx", "app/+not-found.jsx", "app/search/[query].jsx", "app/(tabs)/profile.jsx", "app/(tabs)/home.jsx", "app/(tabs)/create.jsx", "app/(tabs)/bookmark.jsx", "app/(tabs)/_layout.jsx", "app/(auth)/sign-up.jsx", "app/(auth)/sign-in.jsx", "app/(auth)/_layout.jsx", "context/GlobalProvider.js", "hooks/useThemeColor.js", "hooks/useColorScheme.web.js", "hooks/useColorScheme.js", "constants/index.js", "constants/images.js", "constants/icons.js", "constants/Colors.js", "components/ThemedView.jsx", "components/ThemedText.jsx", "components/ParallaxScrollView.jsx", "components/HelloWave.jsx", "components/HapticTab.jsx", "components/FormField.jsx", "components/ExternalLink.jsx", "components/CustomButton.jsx", "components/Collapsible.jsx"  ]
 }
