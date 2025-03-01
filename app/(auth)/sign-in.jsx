@@ -1,25 +1,46 @@
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Alert, Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { images } from "@/constants";
 import FormField from "@/components/FormField";
 import CustomButton from "@/components/CustomButton";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
+import { createUser, signIn } from "@/lib/appwrite";
 
 const SignIn = () => {
   const [form, setForm] = useState({
     email: '',
     password: ''
   });
-  const submit = () => {
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const submit = async () => {
+    if(!form.email || !form.password) {
+      Alert.alert('Error', 'Pls fill all fields')
+    }
+
+    setIsSubmitting(true);
+    try {
+      await signIn(
+        form.email,
+        form.password,
+      )
+      // set it tp global state
+
+      router.replace('/home');
+    } catch (error) {
+      Alert.alert('Error', error.message)
+    } finally {
+      setIsSubmitting(false)
+    }
 
   }
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   return (
     <SafeAreaView className="bg-primary h-full">
       <ScrollView>
-    <View className="w-full justify-center h-full px-4 my-6">
+    <View className="w-full justify-center min-h-[83vh] px-4 my-6">
       <Image
       source={images.logo}
       resizeMode="contain"
@@ -43,12 +64,12 @@ const SignIn = () => {
       />
 
       <CustomButton 
-      title='sign in'
+      title='Sign In'
       handlePress={submit}
       containerStyles='mt-7'
       isLoading={isSubmitting} />
 
-<View className="flex justify-center pt-5 flex-row gap-2">
+<View className="justify-center pt-5 flex-row gap-2">
             <Text className="text-lg text-gray-100 font-pregular">
               Don't have an account?
             </Text>
@@ -67,4 +88,4 @@ const SignIn = () => {
 
 export default SignIn;
 
-const styles = StyleSheet.create({});
+
